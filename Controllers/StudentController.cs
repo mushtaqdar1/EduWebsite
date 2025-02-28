@@ -1,38 +1,19 @@
-using Microsoft.AspNetCore.Mvc;
+// File: Controllers/StudentController.cs
 using EduWebsite.Models;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EduWebsite.Controllers
 {
     public class StudentController : Controller
     {
-        private static List<Student> students = new();  // Temporary storage
+        private readonly ILogger<StudentController> _logger;
 
-        public IActionResult Register()
+        public StudentController(ILogger<StudentController> logger)
         {
-            return View();
+            _logger = logger;
         }
 
-        [HttpPost]
-        public IActionResult Register(Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                student.Id = students.Count + 1; // Auto-increment ID
-                students.Add(student);
-                return RedirectToAction("Success");
-            }
-            return View(student);
-        }
-
-        public IActionResult Success()
-        {
-            return View();
-        }
-
-        public IActionResult List()
-        {
-            return View(students);
-        }
+        // Controller actions here
     }
 }

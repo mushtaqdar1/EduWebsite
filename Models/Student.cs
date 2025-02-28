@@ -1,19 +1,15 @@
-using System.ComponentModel.DataAnnotations;
-
+// File: Models/Student.cs
 namespace EduWebsite.Models
 {
     public class Student
     {
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
-
-        [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage = "Course selection is required")]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Course { get; set; }
+        public string Email { get; set; }
+        
+        // Concatenated Name for easier access
+        public string Name => $"{FirstName} {LastName}";
     }
 }
